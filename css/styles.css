@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css?family=Creepster&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Charm&display=swap');
+
+body{
+    width: 100vw;
+    height: auto;
+    font-family: 'Creepster',sans-serif;
+    background-image: url("../ol.jpg");
+    overflow-x: hidden;
+    text-align: center;
+}
+
+a{
+    color: darkred;
+}
+
+.footer{
+    margin-bottom: 50px;
+}
+
+.footer p{
+    font-family: 'Charm', "Book Antiqua";
+    font-weight: bold;
+    width: 90vw;
+    margin: auto;
+    text-align: left;
+    padding-bottom: 20pt;
+}
+
+.labels{
+    font-family: 'Charm', "Book Antiqua";
+    font-weight: bold;
+}
+
+h1{
+    font-size: 8rem;
+    text-align: center;
+    margin: auto;
+    padding-top: 50px;
+}
+
+h3{
+    font-size: 2rem;
+}
+
+.bookTitles{
+    text-shadow: #777776 1px 0 10px;
+}
+
+.spiders{
+    -webkit-filter: drop-shadow( 20px 30px rgba(0, 0, 0, .9));
+    filter: drop-shadow( 20px 30px rgba(0, 0, 0, .9));
+    /*stroke-width: 20px;*/
+    stroke: black;
+}
+
+hr {
+    border: 1px solid #3a3838;
+    width: 85vw;
+    margin: auto;
+}
+
+

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Horror Novels</title>
+    <script src = "https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <h1>Horror Novels</h1>
+    <h3>goodread's top 20 horror novels represented as spooktasticical spiderwebs</h3>
+    <div id="legend"></div>
+    <hr/>
+    <div id="spiderwebs"></div>
+    <div class="footer">
+        <h3>Footnotes</h3>
+        <p>Spider locations are randomly generated. If problematic occlusion occurs, simply refresh the page to generate new spider coordinates.</p>
+        <p>The top 20 horror novels were selected from <a href="https://www.goodreads.com/list/show/3371.The_Definitive_Horror_Book_List">Goodread's Definitive Horror Book List</a> and the data was provided by <a href="https://zenodo.org/records/4265096">Zenodo's Best Books Ever Dataset</a>.</p>
+        <p>
+            Regarding genres: after cleaning to remove genres that were common to every book ('Horror', 'Fiction'), genres that were a combination of two or more genres (e.g. 'Mystery Thriller', 'Science Fiction Fantasy'), 'genres' that described a type of media (e.g. 'Classics','Short Stories', 'Audiobooks', 'Gothic', 'Adult', 'Poetry'), there were 19 remaining. These remaining genres were collapsed into five main categories: Fantasy ('Fantasy'/'Urban Fantasy'); Thriller ('Thriller'/'Mystery'/'Suspension'); Supernatural ('Supernatural'/'Paranormal'/'Vampires'/'Ghosts'/'Zombies'); Scifi ('Science Fiction'/'Dystopia'/'Apocalyptic'/'Post Apocalyptic'); and Drama/Crime ('Drama'/'Crime'). Three of the 19 genres were ultimately not represented, but each was applicable to only one book: 'Religion', 'Historical Fiction', and 'Psychological Thriller'.
+        </p>
+        <p>Regarding ages: When there were discrepancies between the first publication date provided in the Zenodo dataset and the Goodread's date, the Goodread's date was used.  </p>
+
+    </div>
+
+    <!--Javascript Files-->
+
+    <script src="js/main.js"></script>
+    <script src="js/spiderWebs.js"></script>
+    <script src="js/helperFunctions.js"></script>
+</body>
+</html>
