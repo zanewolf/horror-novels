@@ -145,7 +145,7 @@ class spiderWebs{
 		vis.text
 				.attr("transform",d=>`translate(${d.centerXY[0]},${d.centerXY[1]+175})`)
 				.attr('text-anchor', 'middle')
-				.style('font-size', '1.25em')
+				.style('font-size', '1.5em')
 				.style('font-style', 'italic')
 				.text(d => `${d.title} (${d.pubYear})`)
 

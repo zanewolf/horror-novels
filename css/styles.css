@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Creepster&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Charm&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Glass+Antique&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lugrasimo&display=swap');
 
 body{
     width: 100vw;
@@ -18,8 +20,9 @@ a{
     margin-bottom: 50px;
 }
 
+/*changed from chart to serif font Glass Antiqua*/
 .footer p{
-    font-family: 'Charm', "Book Antiqua";
+    font-family: 'Glass Antiqua', "Book Antiqua";
     font-weight: bold;
     width: 90vw;
     margin: auto;
@@ -28,10 +31,14 @@ a{
 }
 
 .labels{
-    font-family: 'Charm', "Book Antiqua";
-    font-weight: bold;
+    font-family: 'Creepster', "Book Antiqua";
+    font-weight: lighter;
 }
 
+.bookTitles{
+    font-family: 'Creepster', "Book Antiqua";
+    /*font-weight: bold;*/
+}
 h1{
     font-size: 8rem;
     text-align: center;
@@ -43,9 +50,10 @@ h3{
     font-size: 2rem;
 }
 
-.bookTitles{
-    text-shadow: #777776 1px 0 10px;
-}
+/*removed per feedback*/
+/*.bookTitles{*/
+/*    text-shadow: #777776 1px 0 10px;*/
+/*}*/
 
 .spiders{
     -webkit-filter: drop-shadow( 20px 30px rgba(0, 0, 0, .9));
