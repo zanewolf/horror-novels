@@ -1,8 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Creepster&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Charm&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Glass+Antique&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Lugrasimo&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Glass+Antiqua&display=swap');
 body{
     width: 100vw;
     height: auto;
@@ -22,15 +19,38 @@ a{
 
 /*changed from chart to serif font Glass Antiqua*/
 .footer p{
-    font-family: 'Glass Antiqua', "Book Antiqua";
+    font-family: "Book Antiqua";
     font-weight: bold;
     width: 90vw;
     margin: auto;
-    text-align: left;
+    text-align: justify;
     padding-bottom: 20pt;
+    line-height: 1.5;
+    font-size: 1em;
 }
 
-.labels{
+span.fantasy{
+    background: #6108ea;
+    color: white;
+}
+span.thriller{
+    background: #ad0101;
+    color: white;
+}
+span.scifi{
+    background: #08ff08;
+    color: black;
+}
+span.supernatural{
+    background: #f14505;
+    color: black;
+}
+span.drama{
+    background: #eec005;
+    color: black;
+}
+
+.labels {
     font-family: 'Creepster', "Book Antiqua";
     font-weight: lighter;
 }
