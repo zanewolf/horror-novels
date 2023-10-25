@@ -74,7 +74,7 @@ df_horror  <- df_horror|>subset(select = c("title","main_author","series","genre
 # next steps
 # generate color palette
 # pal <- c("7b00ff","ff6a00","fad900","08ff08","660000","5f0ca7")
-notGenres <- c("Horror","Fiction","Audiobook","Novels","Literature","Poetry", "Adult","Adult Fiction","Mystery Thriller","19th Century","Science Fiction Fantasy","School","Ghost Stories","Classics", "Gothic", "Short Stories")
+notGenres <- c("Horror","Fiction","Audiobook","Novels","Literature","Poetry", "Adult","Adult Fiction","Mystery Thriller","19th Century","Science Fiction Fantasy","School","Ghost Stories","Classics", "Gothic", "Historical Fiction", "Psychological Thriller", "Religion", "Short Stories")
 
 # export, clean dates, count awards, re-import
 write_csv(df_horror,"tbc_horror.csv")
@@ -104,7 +104,7 @@ df_genres  <- df_tidy %>%
 
 hist(df_cleaned$rating)
 hist(as.numeric(df_cleaned$pages),breaks=24)
-hist(df_cleaned_2$age)
+hist(df_cleaned_2$age,breaks=10)
 
 df_genres  |> 
   group_by(genres) |> 

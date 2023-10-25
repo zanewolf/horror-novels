@@ -77,17 +77,17 @@ function combinePaths(spokePath,filamentPath){
 	return spokePath.concat(filamentPath)
 }
 
-function genSpiderXY(numSpiders, radius_web){
+function genSpiderXY(numSpiders, radiusWeb){
 
 	let theta=2*Math.PI/numSpiders
 	let stepTheta = 2*Math.PI/(3*numSpiders)
 	let spiderCoords =[]
 
 	for (let i=1; i<=numSpiders; i++){
-		let random_r = radius_web*Math.random()*0.7
+		let randomR = radiusWeb*Math.random()*0.7
 		let randomTheta = theta*i+Math.random()*2*stepTheta
 
-		spiderCoords.push({x:random_r*Math.sin(randomTheta),y:random_r*Math.cos(randomTheta)})
+		spiderCoords.push({x:randomR*Math.sin(randomTheta),y:randomR*Math.cos(randomTheta)})
 	}
 	return spiderCoords
 }

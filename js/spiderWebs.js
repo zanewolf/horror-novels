@@ -4,6 +4,7 @@ class spiderWebs{
 		this.data = data[0]
 		this.parentElement = parentElement
 		this.legendElement = legendElement
+		console.log('🦇💀👻🎃Happy Halloween!🎃👻💀🦇')
 
 		this.initVis()
 	}
@@ -14,12 +15,11 @@ class spiderWebs{
 		// SET UP SVG _________________________
 		vis.margin = {top: 0, right: 10, bottom: 0, left: 10};
 		vis.fullWidth= window.innerWidth;
-		// vis.fullHeight= 6000;
 		vis.webWidth =180;
 		vis.width = vis.fullWidth - vis.margin.left - vis.margin.right;
-		vis.websPerRow=Math.floor(vis.width/(vis.webWidth*2))
+		vis.websPerRow=Math.floor(vis.width/(vis.webWidth*2)) //originally this math was in calculateGridPos, borrowed from Shirley Wu's film flowers. However, I also wanted to calculate the svg height requirement rather than hardcode it, so these calcs were moved here.
 
-		vis.svgMarginLeft = (vis.width-vis.webWidth*2*vis.websPerRow)/4
+		vis.svgMarginLeft = (vis.width-vis.webWidth*2*vis.websPerRow)/5
 
 		vis.minHeight=vis.data.length/vis.websPerRow * (vis.webWidth+250)
 		vis.height = vis.minHeight + vis.margin.top + vis.margin.bottom;
@@ -37,27 +37,14 @@ class spiderWebs{
 				.attr('transform', `translate (${vis.margin.left}, ${vis.margin.top})`)
 
 		vis.legendPostions= {spiders:1000,age: 100,radius: 350,rating:600,awards:825};
-				// .attr('style','border-bottom: 10px black')
+
 
 	// 	SCALES ____________________
-
-	// // 	scale for page number/spokes
-	// 	vis.spokeScale = d3.scaleThreshold()
-	// 			.range([5,6,7,8,9,10])
-	// 			.domain([200,400,600,800,1000]) //determined by looking at histo of raw data
-	// //
-	// // // 	scale for age/radius
-	// 	vis.radiusScale=d3.scaleLog()
-	// 			.range([30,150])
-	// 			.domain(d3.extent(vis.data,d=>d.age))
 
 		// scale for age  |> spokes
 			vis.spokeScale = d3.scaleQuantize()
 				.range([10,9,8,7,6])
 				.domain(d3.extent(vis.data,d=>d.age)) //determined by looking at histo of raw data
-
-		console.log(vis.spokeScale(180))
-		console.log(vis.spokeScale)
 
 		// 	scale for page number  |> radius
 		vis.radiusScale=d3.scaleLinear()
@@ -66,19 +53,9 @@ class spiderWebs{
 
 	// 	scale for color/background color
 		vis.colorScale=d3.scaleOrdinal()
-				.range(["#6108ea","#f14505","#eec005","#08ff08",
+				.range(["#6108ea","#f14505","#f8c805","#08ff08",
 					"#ad0101"])
 				.domain(['Fantasy','Supernatural','Drama/Crime','Scifi','Thriller'])
-
-	// 	scale for num awards/filament sagginess
-	// 	vis.sagScale=d3.scaleLinear()
-	// 			.range([0.9,0.15])
-	// 			.domain([0,5]) //determined by looking at histo of raw data
-	//
-	// // 	scale for rating/num rings
-	// 	vis.ringScale=d3.scaleQuantize()
-	// 			.range([1,2,3])
-	// 			.domain(d3.extent(vis.data,d=>d.rating))
 
 		// 	scale for rating  |> sag
 		vis.sagScale=d3.scaleLinear()
@@ -90,6 +67,7 @@ class spiderWebs{
 				.range([1,6])
 				.domain(d3.extent(vis.data,d=>d.numAwards))
 
+		// create visual data object
 		vis.webData  = vis.data.map((d, i) => {
 				return {
 					title: d.title,
@@ -138,7 +116,6 @@ class spiderWebs{
 				.attr('fill','none')
 				.attr('transform',d =>`rotate(${d.randomRotate},${d.centerXY[0]},${d.centerXY[1]})`)
 
-		console.log(vis.webs)
 		// add book titles and year
 		vis.text=vis.webs.append('text').attr('class','bookTitles')
 
@@ -153,7 +130,7 @@ class spiderWebs{
 		vis.spiders=vis.webs.selectAll('g')
 				.data(d=>{
 					return _.times(d.genres.length, i => {
-						// create a copy of the parent data, and add in calculated rotation
+						// create a copy of the parent data, and add in calculations
 						return Object.assign({}, d,{
 							spiderXY:d.spiderXYs[i],
 							spiderColor: vis.colorScale(d.genres[i]),
@@ -167,7 +144,6 @@ class spiderWebs{
 				.attr('fill',d=>d.spiderColor)
 				.attr('class','spiders')
 				.attr('stroke-width','20px')
-		console.log(vis.spiders)
 
 	}
 
@@ -211,8 +187,6 @@ class spiderWebs{
 
 		vis.legendRadius.append('path')
 				.attr('d',d=>combinePaths(genSpokePaths(6,vis.radiusScale(d),Math.PI/3,[0,0]),genFilamentPaths(vis.radiusScale(d),Math.PI/3,0.8,[0,0],3,6)))
-				// .attr('transform',(d,i)=>`translate(${vis.width/4*i},0)`)
-				// .attr('fill',d=>vis.colorScale(d))
 				.attr('stroke','black')
 				.attr('stroke-width',2)
 				.attr('fill','none')
@@ -235,8 +209,7 @@ class spiderWebs{
 				.attr('transform',(d,i)=>`translate(${vis.width/6*i},0)`)
 
 		vis.legendSpokes.append('path')
-				.attr('d',(d,i)=>combinePaths(genSpokePaths(d,vis.radiusScale(400),2*Math.PI/d,[0,0]),genFilamentPaths(vis.radiusScale(400),2*Math.PI/d,0.8,[0,0],3,d)))// .attr('transform',(d,i)=>`translate(${vis.width/4*i},0)`)
-				// .attr('fill',d=>vis.colorScale(d))
+				.attr('d',(d,i)=>combinePaths(genSpokePaths(d,vis.radiusScale(400),2*Math.PI/d,[0,0]),genFilamentPaths(vis.radiusScale(400),2*Math.PI/d,0.8,[0,0],3,d)))
 				.attr('stroke','black')
 				.attr('stroke-width',2)
 				.attr('fill','none')
@@ -251,8 +224,6 @@ class spiderWebs{
 
 
 	// 	legend for filament sagginess  => rating
-
-
 		vis.legendSag = vis.legendSVG.append('g')
 				.attr('class','sagWeb')
 				.attr('transform',`translate(${vis.width/3},${vis.legendPostions.rating})`)
@@ -263,22 +234,20 @@ class spiderWebs{
 				.attr('transform',(d,i)=>`translate(${vis.width/3*i},0)`)
 
 		vis.legendSag.append('path')
-				.attr('d',d=>combinePaths(genSpokePaths(6,vis.radiusScale(400),2*Math.PI/6,[0,0]),genFilamentPaths(vis.radiusScale(400),2*Math.PI/6,vis.sagScale(d),[0,0],2,6)))// .attr('transform',(d,i)=>`translate(${vis.width/4*i},0)`)
-				// .attr('fill',d=>vis.colorScale(d))
+				.attr('d',d=>combinePaths(genSpokePaths(6,vis.radiusScale(400),2*Math.PI/6,[0,0]),genFilamentPaths(vis.radiusScale(400),2*Math.PI/6,vis.sagScale(d),[0,0],2,6)))
 				.attr('stroke','black')
 				.attr('stroke-width',2)
 				.attr('fill','none')
 
 		vis.legendSag.append('text')
 				.attr('class','labels')
-					.data([`${d3.min(vis.data,d=>d.rating)}/5 rating`,`${d3.max(vis.data,d=>d.rating)}/5 rating`])
+				.data([`${d3.min(vis.data,d=>d.rating)}/5 rating`,`${d3.max(vis.data,d=>d.rating)}/5 rating`])
 				.text(d=>d)
 				.attr('text-anchor', 'middle')
 				.attr('transform','translate(0,100)')
 				.attr('font-size','1.25em')
 
 		// 	legend for ring number => num awards
-
 		vis.legendRings = vis.legendSVG.append('g')
 				.attr('class','ringWeb')
 				.attr('transform',`translate(${vis.width/7},${vis.legendPostions.awards})`)
@@ -289,8 +258,7 @@ class spiderWebs{
 				.attr('transform',(d,i)=>`translate(${vis.width/7*i},0)`)
 
 		vis.legendRings.append('path')
-				.attr('d',d=>combinePaths(genSpokePaths(6,vis.radiusScale(400),2*Math.PI/6,[0,0]),genFilamentPaths(vis.radiusScale(400),2*Math.PI/6,0.6,[0,0],vis.ringScale(d),6)))// .attr('transform',(d,i)=>`translate(${vis.width/4*i},0)`)
-				// .attr('fill',d=>vis.colorScale(d))
+				.attr('d',d=>combinePaths(genSpokePaths(6,vis.radiusScale(400),2*Math.PI/6,[0,0]),genFilamentPaths(vis.radiusScale(400),2*Math.PI/6,0.6,[0,0],vis.ringScale(d),6)))
 				.attr('stroke','black')
 				.attr('stroke-width',2)
 				.attr('fill','none')
@@ -302,10 +270,5 @@ class spiderWebs{
 				.attr('text-anchor', 'middle')
 				.attr('transform','translate(0,100)')
 				.attr('font-size','1.25em')
-
-
-
-
 	}
-
 }
